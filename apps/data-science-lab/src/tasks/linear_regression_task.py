@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 import statsmodels.api as sm
 import os
 
@@ -26,19 +27,36 @@ def run():
     print("\nRegression Results:")
     print(results.summary())
     
-    # Create visualization
-    plt.figure(figsize=(10, 6))
-    plt.scatter(x1, y, alpha=0.6, label='Data points')
+    # Create enhanced visualization with seaborn
+    plt.figure(figsize=(12, 8))
     
+    # Set seaborn style
+    sns.set_style("whitegrid")
+    sns.set_palette("husl")
+    
+    # Create scatter plot with regression line using seaborn
+    ax = sns.regplot(x=x1, y=y, 
+                    scatter_kws={'alpha':0.7, 's':80, 'color': '#2E86AB'},
+                    line_kws={'color': '#A23B72', 'linewidth': 3},
+                    ci=95)
+    
+    # Add regression equation
     const, slope = results.params
-    yhat = slope * x1 + const
-    plt.plot(x1, yhat, 'r-', lw=3, label=f'Regression: GPA = {slope:.4f} × SAT + {const:.3f}')
+    r_squared = results.rsquared
+    equation_text = f'GPA = {slope:.4f} × SAT + {const:.3f}\nR² = {r_squared:.3f}'
+    plt.text(0.05, 0.95, equation_text, transform=ax.transAxes, 
+             bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8),
+             fontsize=12, verticalalignment='top')
     
-    plt.xlabel('SAT Score', fontsize=14)
-    plt.ylabel('GPA', fontsize=14)
-    plt.title('SAT vs GPA Linear Regression', fontsize=16)
-    plt.legend()
-    plt.grid(True, alpha=0.3)
+    # Enhanced styling
+    plt.xlabel('SAT Score', fontsize=14, fontweight='bold')
+    plt.ylabel('GPA', fontsize=14, fontweight='bold')
+    plt.title('SAT vs GPA Linear Regression Analysis', fontsize=16, fontweight='bold', pad=20)
+    
+    # Customize grid and spines
+    ax.grid(True, alpha=0.3)
+    sns.despine(top=False, right=False)
+    
     plt.tight_layout()
     
     plot_path = os.path.join(os.path.dirname(__file__), '..', 'output', 'linear_regression.png')
