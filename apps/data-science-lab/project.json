@@ -1,0 +1,22 @@
+{
+  "name": "data-science-lab",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/data-science-lab/src",
+  "projectType": "application",
+  "targets": {
+    "run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "/opt/anaconda3/bin/python3 src/main.py",
+        "cwd": "apps/data-science-lab"
+      }
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pip install -r requirements.txt",
+        "cwd": "apps/data-science-lab"
+      }
+    }
+  }
+}

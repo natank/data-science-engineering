@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "validate-env": "nx run validate-env:run"
+    "validate-env": "nx run validate-env:run",
+    "lab": "nx run data-science-lab:run"
   },
   "devDependencies": {
     "@nx/workspace": "^18.0.0",
