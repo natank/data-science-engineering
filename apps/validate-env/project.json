@@ -1,0 +1,22 @@
+{
+  "name": "validate-env",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/validate-env/src",
+  "projectType": "application",
+  "targets": {
+    "run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "/opt/anaconda3/bin/python3 src/main.py",
+        "cwd": "apps/validate-env"
+      }
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pip install -r requirements.txt",
+        "cwd": "apps/validate-env"
+      }
+    }
+  }
+}

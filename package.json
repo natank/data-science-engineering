@@ -1,0 +1,17 @@
+{
+  "name": "data-science-learning-journey",
+  "version": "1.0.0",
+  "description": "NX monorepo for data science bootcamp projects.",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "validate-env": "nx run validate-env:run"
+  },
+  "devDependencies": {
+    "@nx/workspace": "^18.0.0",
+    "nx": "^18.0.0"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}
